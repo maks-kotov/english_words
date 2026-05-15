@@ -1,7 +1,7 @@
 function Footer() {
   return (
-    <footer className="w-full p-4 bg-muted text-muted-foreground border-t border-border">
-      <div className="grid grid-cols-1 gap-y-1 wrap-break-word mb-4 text-center">
+    <footer className="w-full py-4 bg-muted text-muted-foreground border-t border-border lg:px-12 lg:py-6">
+      <div className="grid grid-cols-1 gap-y-1 mb-4 text-center lg:grid-cols-4 lg:mb-12">
         <p className="text-sm">О нас</p>
         <p className="text-sm">Политика конфиденциальности</p>
         <p className="text-sm">Контакты</p>

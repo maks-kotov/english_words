@@ -52,9 +52,9 @@ export default function RootLayout({
         "font-sans",
         inter.variable,
       )}>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         <Header />
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

@@ -5,7 +5,7 @@ import { Way } from "./modules/way";
 export default function Home() {
   return (
     <>
-      <div className="mx-4">
+      <div className="mt-8 mx-4 lg:mx-12">
         <Greeting />
         <Cards />
         <Way />
