@@ -14,11 +14,13 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
+  /* --color-accent-foreground: var(--accent-foreground); */
+  /* --color-accent: var(--accent); */
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-light: var(--light);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
@@ -90,10 +92,6 @@
 @layer base {
   * {
     @apply border-border outline-ring/50 text-base;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 
   html {

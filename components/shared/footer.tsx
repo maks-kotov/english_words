@@ -1,4 +1,4 @@
-function Footer() {
+function Footer(): React.ReactElement {
   return (
     <footer className="w-full py-4 bg-muted text-muted-foreground border-t border-border lg:px-12 lg:py-6">
       <div className="grid grid-cols-1 gap-y-1 mb-4 text-center lg:grid-cols-4 lg:mb-12">

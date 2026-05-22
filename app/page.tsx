@@ -2,7 +2,7 @@ import { Cards } from "./modules/cards";
 import { CreateAccount } from "./modules/createAccount";
 import { Greeting } from "./modules/greeting";
 import { Way } from "./modules/way";
-export default function Home() {
+export default function Home(): React.ReactElement {
   return (
     <>
       <div className="mt-8 mx-4 lg:mx-12">

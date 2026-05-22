@@ -1,17 +1,12 @@
-import { LogOut } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { auth, signOut } from "@/auth/auth";
-import { redirect } from "next/navigation";
+} from "@/components/ui/dropdown-menu";
+import AuthButton from "./ui/authButton";
 
 export default async function Header(): Promise<React.ReactElement> {
-  const session = await auth();
-
   return (
     <header className="w-full h-20 bg-secondary flex justify-between items-center px-4 lg:px-12">
       <div className="flex items-center gap-x-2 text-secondary-foreground cursor-pointer">
@@ -26,17 +21,7 @@ export default async function Header(): Promise<React.ReactElement> {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuGroup>
-            <DropdownMenuItem
-              onClick={() => {
-                session ? signOut() : redirect("/login");
-              }}
-              className="group cursor-pointer relative">
-              <div className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 bg-secondary  transition-all duration-200 opacity-0 group-hover:opacity-100" />
-              <div className="flex items-center gap-x-2 transition-transform duration-200 group-hover:translate-x-2">
-                <LogOut className="text-foreground" />
-                <span>{session ? "Выйти" : "Войти"}</span>
-              </div>
-            </DropdownMenuItem>
+            <AuthButton />
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

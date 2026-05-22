@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-import Header from "@/components/shared/header";
+import { cn } from "@/utils/cn";
 import Footer from "@/components/shared/footer";
+import SessionProviderClient from "@/providers/session-provider";
+import { auth } from "@/auth/auth";
+import { Header } from "@/modules/header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -36,11 +38,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>): Promise<React.ReactElement> {
+  const session = await auth();
   return (
     <html
       lang="en"
@@ -53,9 +56,11 @@ export default function RootLayout({
         inter.variable,
       )}>
       <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SessionProviderClient session={session}>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SessionProviderClient>
       </body>
     </html>
   );
