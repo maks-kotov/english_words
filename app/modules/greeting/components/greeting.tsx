@@ -14,7 +14,7 @@ export default async function Greeting(): Promise<React.ReactElement> {
       <p className="max-w-64 mb-8 mx-auto text-light sm:max-w-max">
         Освой английские слова легко и с удовольствием
       </p>
-      <Link href={"/register"}>
+      <Link href={"/login"}>
         <Button>
           <span className="text-lg">🚀</span>
           <span className="text-lg">Начать учиться</span>

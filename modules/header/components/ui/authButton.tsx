@@ -1,11 +1,10 @@
 "use client";
-import { signOut } from "@/auth/auth";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { LogOut } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 export default function AuthButton(): React.ReactElement {
-  const session = useSession();
+  const session = useSession().data;
   console.log("authButton session: ", session);
   const router = useRouter();
   return (

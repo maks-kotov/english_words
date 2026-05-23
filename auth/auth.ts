@@ -1,5 +1,7 @@
 import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
+import GitHub from "next-auth/providers/github";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/prisma";
 import bcrypt from "bcryptjs";
@@ -19,18 +21,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       name: "credentials",
       authorize: async (credentials) => {
         const { email, password } = credentials;
-        if
-        (
-          typeof email !== "string"
-          ||
-          typeof password !== "string"
-        ) throw new ERROR_OF_TYPES(); //вынужденная проверка на тип поступаемых данных, скорее вссего никогда не выполнится
+        if (typeof email !== "string" || typeof password !== "string")
+          throw new ERROR_OF_TYPES(); //вынужденная проверка на тип поступаемых данных, скорее вссего никогда не выполнится
 
         const user = await prisma.user.findUnique({
           where: { email },
         });
+
         if (user === null) {
           throw new EMAIL_NOT_FOUND();
+        }
+        if (user.password === null) {
+          throw new ERROR_OF_TYPES();
         }
         const passwordsIsMatches = await bcrypt.compare(
           password,
@@ -42,9 +44,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return credentials;
       },
     }),
+    Google({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+    }),
+    GitHub({
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
+    }),
   ],
   secret: process.env.BETTER_AUTH_SECRET,
   pages: {
     // signIn: ""
-  }
+  },
+  session: { strategy: "jwt" }, // важно
 });
