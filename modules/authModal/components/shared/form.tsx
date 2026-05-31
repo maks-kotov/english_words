@@ -7,7 +7,11 @@ import { Label } from "@/components/ui/label";
 import { FormProps } from "@/modules/authModal/types";
 import { useRouter } from "next/navigation";
 
-export default function Form({ formProps }: { formProps: FormProps }): React.ReactElement {
+export default function Form({
+  formProps,
+}: {
+  formProps: FormProps;
+}): React.ReactElement {
   const router = useRouter();
 
   const [state, formAction, isPending] = useActionState(
@@ -19,6 +23,7 @@ export default function Form({ formProps }: { formProps: FormProps }): React.Rea
   ); // объявляем хук useActionState. он нам предоставляет 3 переменные. state по умолчанию равен {success: false,errors: {}}, formAction равен registerUser, isPending по умолчанию равен false. когда мы заполнили форму и нажали на кнопку - выполняется функция registerUser, которая возвращает нам state в котором либо есть ошибки, либо нет, success либо true, либо false. в момент выполнения registerUser переменная isPending меняется на true. когда к нам приходит state - обновляется состояние формы на которой применялся серверный action и мы показываем либо ошибку, либо успех.
   useEffect(() => {
     if (state.data !== null) {
+      sessionStorage.setItem("pendingEmail", state.data.email);
       router.push(formProps.urlForRedirect);
       router.refresh();
     }
@@ -57,7 +62,7 @@ export default function Form({ formProps }: { formProps: FormProps }): React.Rea
       )}
       {state.data !== null && ( //показываем успех
         <div className="text-sm text-success text-center">
-          {formProps.message}
+          {state.data.message}
         </div>
       )}
 

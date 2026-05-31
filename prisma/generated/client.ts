@@ -47,6 +47,11 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
+ * Model TemporaryUser
+ * 
+ */
+export type TemporaryUser = Prisma.TemporaryUserModel
+/**
  * Model Account
  * 
  */

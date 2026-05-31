@@ -9,7 +9,6 @@ export default function SignInPage(): React.ReactElement {
       formProps={{
         buttonText1: "Выполняю вход...",
         buttonText2: "Войти",
-        message: "Вход выполнен успешно",
         handlerSubmit: login,
         urlForRedirect: "/",
       }}

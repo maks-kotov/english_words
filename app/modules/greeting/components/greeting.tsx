@@ -4,7 +4,6 @@ import Link from "next/link";
 
 export default async function Greeting(): Promise<React.ReactElement> {
   const session = await auth();
-  console.log("session: ", session);
 
   return (
     <section className=" mb-16 text-center ">

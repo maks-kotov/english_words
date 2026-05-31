@@ -4,17 +4,17 @@ export type FormState = {
     // data = null в случaе ошибки
     email: string; // для валидации
     password: string; // для валидации
+    message?: string; // чтоб показать успех в форме
   } | null;
 };
 export type FormProps = {
   buttonText1: string;
   buttonText2: string;
-  message: string;
   handlerSubmit: (
     prevState: FormState,
     formData: FormData,
   ) => Promise<FormState>;
-  urlForRedirect: string
+  urlForRedirect: string;
 };
 export type LinksProps = {
   linkText: string;

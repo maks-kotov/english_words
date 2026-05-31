@@ -26,6 +26,18 @@ model User {
   progress  UserProgress?
   economy   UserEconomy?
 }
+//нужно для регистрации
+model TemporaryUser {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  password         String
+  verificationCode String // тк может содержать ведущие нули
+  codeExpiresAt    DateTime
+  createdAt        DateTime @default(now())
+
+  @@index([email])
+  @@index([verificationCode])
+}
 
 // МОДЕЛИ ДЛЯ OAuth (ОБЯЗАТЕЛЬНЫЕ)
 model Account {

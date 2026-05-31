@@ -1,5 +1,5 @@
 import { AuthModal } from "@/modules/authModal";
-import register from "@/modules/authModal/server_actions/register";
+import createTemporaryUser from "@/modules/authModal/server_actions/createTemporaryUser";
 
 export default function RegisterPage(): React.ReactElement {
   return (
@@ -8,9 +8,8 @@ export default function RegisterPage(): React.ReactElement {
       formProps={{
         buttonText1: "Регистрация...",
         buttonText2: "Зарегистрироваться",
-        message: "Регистрация прошла успешно",
-        handlerSubmit: register,
-        urlForRedirect: "/login",
+        handlerSubmit: createTemporaryUser,
+        urlForRedirect: "/confirmEmail",
       }}
       linksProps={{
         linkText: "Уже есть аккаунт?",

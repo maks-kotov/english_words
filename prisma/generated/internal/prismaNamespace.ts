@@ -385,6 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
+  TemporaryUser: 'TemporaryUser',
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
@@ -406,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "userSettings" | "userProgress" | "userEconomy"
+    modelProps: "user" | "temporaryUser" | "account" | "session" | "verificationToken" | "userSettings" | "userProgress" | "userEconomy"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -481,6 +482,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
+        }
+      }
+    }
+    TemporaryUser: {
+      payload: Prisma.$TemporaryUserPayload<ExtArgs>
+      fields: Prisma.TemporaryUserFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TemporaryUserFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TemporaryUserFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>
+        }
+        findFirst: {
+          args: Prisma.TemporaryUserFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TemporaryUserFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>
+        }
+        findMany: {
+          args: Prisma.TemporaryUserFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>[]
+        }
+        create: {
+          args: Prisma.TemporaryUserCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>
+        }
+        createMany: {
+          args: Prisma.TemporaryUserCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TemporaryUserCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>[]
+        }
+        delete: {
+          args: Prisma.TemporaryUserDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>
+        }
+        update: {
+          args: Prisma.TemporaryUserUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>
+        }
+        deleteMany: {
+          args: Prisma.TemporaryUserDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TemporaryUserUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TemporaryUserUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>[]
+        }
+        upsert: {
+          args: Prisma.TemporaryUserUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TemporaryUserPayload>
+        }
+        aggregate: {
+          args: Prisma.TemporaryUserAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTemporaryUser>
+        }
+        groupBy: {
+          args: Prisma.TemporaryUserGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TemporaryUserGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TemporaryUserCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TemporaryUserCountAggregateOutputType> | number
         }
       }
     }
@@ -978,6 +1053,18 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const TemporaryUserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  verificationCode: 'verificationCode',
+  codeExpiresAt: 'codeExpiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TemporaryUserScalarFieldEnum = (typeof TemporaryUserScalarFieldEnum)[keyof typeof TemporaryUserScalarFieldEnum]
+
+
 export const AccountScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -1253,6 +1340,7 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  temporaryUser?: Prisma.TemporaryUserOmit
   account?: Prisma.AccountOmit
   session?: Prisma.SessionOmit
   verificationToken?: Prisma.VerificationTokenOmit

@@ -5,8 +5,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import AuthButton from "./ui/authButton";
+import { auth } from "@/auth/auth";
 
 export default async function Header(): Promise<React.ReactElement> {
+  const session = await auth();
+
   return (
     <header className="w-full h-20 bg-secondary flex justify-between items-center px-4 lg:px-12">
       <div className="flex items-center gap-x-2 text-secondary-foreground cursor-pointer">
@@ -21,7 +24,7 @@ export default async function Header(): Promise<React.ReactElement> {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuGroup>
-            <AuthButton />
+            <AuthButton session={session} />
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
