@@ -1,5 +1,5 @@
 "use server";
-import { FormState } from "@/modules/authModal/types";
+import { FormState } from "@/types/auth";
 import { prisma } from "@/prisma";
 
 export default async function createRegularUser(

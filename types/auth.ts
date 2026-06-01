@@ -15,6 +15,11 @@ export type FormProps = {
     formData: FormData,
   ) => Promise<FormState>;
   urlForRedirect: string;
+  label: string[];
+};
+export type TitleProps = {
+  title: string;
+  description: string;
 };
 export type LinksProps = {
   linkText: string;

@@ -1,11 +1,11 @@
 "use server";
 // валидация, создание временного пользователя, создание и отдание ему ключа верификации.
 //затем выполнение переходит на /confirmEmail и там создаётся нормальный пользователь
-import { Resend } from "resend";
 import { prisma } from "@/prisma";
-import { FormState } from "@/modules/authModal/types";
-import basicValidation from "@/modules/authModal/helpers/basicValidation";
+import { FormState } from "@/types/auth";
+import basicValidation from "@/utils/basicValidation";
 import bcrypt from "bcryptjs";
+import sendVerificationCode from "@/utils/sendVerivicationCode";
 
 export default async function createTemporaryUser(
   prevState: FormState,
@@ -52,13 +52,8 @@ export default async function createTemporaryUser(
       };
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const response = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: email,
-      subject: "Ключ верификации",
-      html: `<p>Здравствуйте!</p><p>Ваш ключ верификации: <strong>${verificationCode}</strong></p>`,
-    });
+    const response = await sendVerificationCode(email, verificationCode);
+
     if (response.data === null) {
       console.log("code: ", temporaryUser.verificationCode);
       return {

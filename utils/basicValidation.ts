@@ -1,5 +1,5 @@
 import z from "zod";
-import { FormState } from "../types";
+import { FormState } from "../modules/twoInputForm/types";
 
 export default async function basicValidation(
   email: string,

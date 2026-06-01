@@ -1,14 +1,21 @@
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Title } from "./modules/title";
-import { Form } from "./modules/form";
+import { OneInputForm } from "@/modules/oneInputForm";
+import createRegularUser from "./createRegularUser";
 
 export default function ConfirmEmailPage(): React.ReactElement {
   return (
-    <Dialog open={true}>
-      <DialogContent className="sm:max-w-sm">
-        <Title />
-        <Form />
-      </DialogContent>
-    </Dialog>
+    <OneInputForm
+      titleProps={{
+        title: "Подтверждение E-mail",
+        description:
+          "На почту ХХХ был отправлен 6-значный код. Введите его в поле ниже.",
+      }}
+      formProps={{
+        buttonText1: "Подтверждение...",
+        buttonText2: "Подтвердить",
+        handlerSubmit: createRegularUser,
+        urlForRedirect: "/login",
+        label: ["Код верификации"],
+      }}
+    />
   );
 }
