@@ -156,7 +156,7 @@ export type TemporaryUserGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type TemporaryUserGroupByOutputType = {
   id: string
   email: string
-  password: string
+  password: string | null
   verificationCode: string
   codeExpiresAt: Date
   createdAt: Date
@@ -186,7 +186,7 @@ export type TemporaryUserWhereInput = {
   NOT?: Prisma.TemporaryUserWhereInput | Prisma.TemporaryUserWhereInput[]
   id?: Prisma.StringFilter<"TemporaryUser"> | string
   email?: Prisma.StringFilter<"TemporaryUser"> | string
-  password?: Prisma.StringFilter<"TemporaryUser"> | string
+  password?: Prisma.StringNullableFilter<"TemporaryUser"> | string | null
   verificationCode?: Prisma.StringFilter<"TemporaryUser"> | string
   codeExpiresAt?: Prisma.DateTimeFilter<"TemporaryUser"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"TemporaryUser"> | Date | string
@@ -195,7 +195,7 @@ export type TemporaryUserWhereInput = {
 export type TemporaryUserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationCode?: Prisma.SortOrder
   codeExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -207,7 +207,7 @@ export type TemporaryUserWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TemporaryUserWhereInput | Prisma.TemporaryUserWhereInput[]
   OR?: Prisma.TemporaryUserWhereInput[]
   NOT?: Prisma.TemporaryUserWhereInput | Prisma.TemporaryUserWhereInput[]
-  password?: Prisma.StringFilter<"TemporaryUser"> | string
+  password?: Prisma.StringNullableFilter<"TemporaryUser"> | string | null
   verificationCode?: Prisma.StringFilter<"TemporaryUser"> | string
   codeExpiresAt?: Prisma.DateTimeFilter<"TemporaryUser"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"TemporaryUser"> | Date | string
@@ -216,7 +216,7 @@ export type TemporaryUserWhereUniqueInput = Prisma.AtLeast<{
 export type TemporaryUserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
+  password?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationCode?: Prisma.SortOrder
   codeExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -231,7 +231,7 @@ export type TemporaryUserScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TemporaryUserScalarWhereWithAggregatesInput | Prisma.TemporaryUserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"TemporaryUser"> | string
   email?: Prisma.StringWithAggregatesFilter<"TemporaryUser"> | string
-  password?: Prisma.StringWithAggregatesFilter<"TemporaryUser"> | string
+  password?: Prisma.StringNullableWithAggregatesFilter<"TemporaryUser"> | string | null
   verificationCode?: Prisma.StringWithAggregatesFilter<"TemporaryUser"> | string
   codeExpiresAt?: Prisma.DateTimeWithAggregatesFilter<"TemporaryUser"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TemporaryUser"> | Date | string
@@ -240,7 +240,7 @@ export type TemporaryUserScalarWhereWithAggregatesInput = {
 export type TemporaryUserCreateInput = {
   id?: string
   email: string
-  password: string
+  password?: string | null
   verificationCode: string
   codeExpiresAt: Date | string
   createdAt?: Date | string
@@ -249,7 +249,7 @@ export type TemporaryUserCreateInput = {
 export type TemporaryUserUncheckedCreateInput = {
   id?: string
   email: string
-  password: string
+  password?: string | null
   verificationCode: string
   codeExpiresAt: Date | string
   createdAt?: Date | string
@@ -258,7 +258,7 @@ export type TemporaryUserUncheckedCreateInput = {
 export type TemporaryUserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.StringFieldUpdateOperationsInput | string
   codeExpiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -267,7 +267,7 @@ export type TemporaryUserUpdateInput = {
 export type TemporaryUserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.StringFieldUpdateOperationsInput | string
   codeExpiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -276,7 +276,7 @@ export type TemporaryUserUncheckedUpdateInput = {
 export type TemporaryUserCreateManyInput = {
   id?: string
   email: string
-  password: string
+  password?: string | null
   verificationCode: string
   codeExpiresAt: Date | string
   createdAt?: Date | string
@@ -285,7 +285,7 @@ export type TemporaryUserCreateManyInput = {
 export type TemporaryUserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.StringFieldUpdateOperationsInput | string
   codeExpiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -294,7 +294,7 @@ export type TemporaryUserUpdateManyMutationInput = {
 export type TemporaryUserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.StringFieldUpdateOperationsInput | string
   codeExpiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -373,7 +373,7 @@ export type $TemporaryUserPayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
-    password: string
+    password: string | null
     verificationCode: string
     codeExpiresAt: Date
     createdAt: Date

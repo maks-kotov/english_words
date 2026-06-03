@@ -2,10 +2,10 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Form from "@/modules/oneInputForm/components/shared/form";
 import Title from "@/modules/oneInputForm/components/shared/title";
 import { FormProps } from "@/types/auth";
-import { titleProps } from "@/types/auth";
+import { TitleProps } from "@/types/auth";
 
 interface props {
-  titleProps: titleProps;
+  titleProps: TitleProps;
   formProps: FormProps;
 }
 
@@ -22,7 +22,9 @@ export default function OneInputForm({
           buttonText2={formProps.buttonText2}
           handlerSubmit={formProps.handlerSubmit}
           urlForRedirect={formProps.urlForRedirect}
-          label={formProps.label}
+          labels={formProps.labels}
+          names={formProps.names}
+          types={formProps.types}
         />
       </DialogContent>
     </Dialog>

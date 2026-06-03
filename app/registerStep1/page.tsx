@@ -1,16 +1,18 @@
 import { TwoInputForm } from "@/modules/twoInputForm";
-import createTemporaryUser from "@/app/register/createTemporaryUser";
+import registerStep1 from "@/app/registerStep1/registerStep1";
 
-export default function RegisterPage(): React.ReactElement {
+export default function RegisterStep1(): React.ReactElement {
   return (
     <TwoInputForm
       titleProps={{ title: "Регистрация", description: "" }}
       formProps={{
         buttonText1: "Регистрация...",
         buttonText2: "Зарегистрироваться",
-        handlerSubmit: createTemporaryUser,
-        urlForRedirect: "/confirmEmail",
-        label: ["E-mail", "Пароль"],
+        handlerSubmit: registerStep1,
+        urlForRedirect: "/registerStep2",
+        labels: ["E-mail", "Пароль"],
+        names: ["email", "password", "code"],
+        types: ["email", "password", "hidden"],
       }}
       linksProps={{
         linkText: "Уже есть аккаунт?",

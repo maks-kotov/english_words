@@ -1,65 +1,119 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FormProps } from "@/types/auth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Form({
   buttonText1,
   buttonText2,
-  label,
   urlForRedirect,
   handlerSubmit,
+  labels,
+  names,
+  types,
 }: FormProps): React.ReactElement {
   const router = useRouter();
+  const key = useSearchParams().get("key"); //имя ключа, переданного при редиректе
+  let localStorageValue = "";
+
+  if (key !== null) {
+    const value = sessionStorage.getItem(key); // значение свойства у sessionStorage, заложенного туда перед редиректом сюда
+    if (value !== null) {
+      localStorageValue = value;
+    }
+  }
 
   const [state, formAction, isPending] = useActionState(handlerSubmit, {
-    errors: null,
-    data: null,
-  }); // объявляем хук useActionState. он нам предоставляет 3 переменные. state по умолчанию равен {success: false,errors: {}}, formAction равен registerUser, isPending по умолчанию равен false. когда мы заполнили форму и нажали на кнопку - выполняется функция registerUser, которая возвращает нам state в котором либо есть ошибки, либо нет, success либо true, либо false. в момент выполнения registerUser переменная isPending меняется на true. когда к нам приходит state - обновляется состояние формы на которой применялся серверный action и мы показываем либо ошибку, либо успех.
+    errors: [""],
+    data: {
+      email: "",
+      password: "",
+      code: "",
+      message: "",
+      localStorage: null,
+    },
+  });
   useEffect(() => {
-    if (state.data !== null) {
-      sessionStorage.setItem("pendingEmail", state.data.email);
-      router.push(urlForRedirect);
-      router.refresh();
+    if (state.errors === null) {
+      /*все варианты при нажатии кнопки
+    если key === null && data.sessionStorage === null
+   простой редирект
+ 
+   если key === null && data.sessionStorage !== null
+   редирект с параметром + присваивание item
+ 
+   если key !== null && data.sessionStorage !== null
+   редирект с параметром + переопределение item
+ 
+   если key !== null && data.sessionStorage === null
+  простой редирект + очищение item
+     */
+      if (key === null && state.data.localStorage === null) {
+        router.push(urlForRedirect);
+        router.refresh();
+      }
+      if (key === null && state.data.localStorage !== null) {
+        sessionStorage.setItem(
+          state.data.localStorage.key,
+          state.data.localStorage.value,
+        );
+        router.push(`${urlForRedirect}?key=${state.data.localStorage.key}`);
+        router.refresh();
+      }
+      if (key !== null && state.data.localStorage !== null) {
+        sessionStorage.setItem(
+          state.data.localStorage.key,
+          state.data.localStorage.value,
+        );
+        router.push(`${urlForRedirect}?key=${state.data.localStorage.key}`);
+        router.refresh();
+      }
+      if (key !== null && state.data.localStorage === null) {
+        sessionStorage.removeItem(key);
+        router.push(urlForRedirect);
+        router.refresh();
+      }
     }
-  }, [state.data, router, urlForRedirect]);
+  }, [state.data.localStorage, state.errors, router, urlForRedirect, key]);
 
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   return (
     <form noValidate action={formAction} className="flex flex-col gap-6">
       <div className="grid gap-2">
-        <Label htmlFor="email">{label[0]}</Label>
+        <Label>{labels[0]}</Label>
         <Input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-          type="email"
+          defaultValue={state.data?.[names[0]]}
+          name={names[0]}
+          type={types[0]}
           required
         />
       </div>
 
       <div className="grid gap-2">
-        <Label htmlFor="password">{label[1]}</Label>
+        <Label>{labels[1]}</Label>
         <Input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          name="password"
-          type="password"
+          defaultValue={state.data?.[names[1]]}
+          name={names[1]}
+          type={types[1]}
           required
         />
       </div>
+      <Input //скрытый, будет хранить значение ключа key, переданного параметром.
+        value={localStorageValue}
+        name={names[2]}
+        type={types[2]}
+        required
+      />
 
       {state.errors !== null && ( //показываем ошибку
         <div className="text-sm text-destructive text-center">
           {state.errors[0]}
         </div>
       )}
-      {state.data !== null && ( //показываем успех
+      {state.errors === null && ( //показываем успех
         <div className="text-sm text-success text-center">
           {state.data.message}
         </div>

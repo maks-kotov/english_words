@@ -2,7 +2,7 @@
 import { FormState } from "@/types/auth";
 import { prisma } from "@/prisma";
 
-export default async function createRegularUser(
+export default async function registerStep2(
   prev: FormState,
   formData: FormData,
 ): Promise<FormState> {
@@ -25,14 +25,29 @@ export default async function createRegularUser(
     });
     if (regularUser === null) {
       return {
-        data: null,
+        data: {
+          email: "",
+          password: "",
+          code,
+          message: "",
+          localStorage: null,
+        },
         errors: [`Ошибка создания пользователя`],
       };
     }
     return {
-      data: { email: regularUser.email, password: temporaryUser.password }, // потому что пароль необязательное поле
+      data: {
+        email: "",
+        password: "",
+        code,
+        message: "Код верный.",
+        localStorage: null,
+      },
       errors: null,
     };
   }
-  return { data: null, errors: ["Неправильный код"] };
+  return {
+    data: { email: "", password: "", code, message: "", localStorage: null },
+    errors: ["Неправильный код"],
+  };
 }

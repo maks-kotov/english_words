@@ -30,7 +30,7 @@ model User {
 model TemporaryUser {
   id               String   @id @default(cuid())
   email            String   @unique
-  password         String
+  password         String?
   verificationCode String // тк может содержать ведущие нули
   codeExpiresAt    DateTime
   createdAt        DateTime @default(now())

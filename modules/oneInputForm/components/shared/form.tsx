@@ -1,55 +1,97 @@
 "use client";
-
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
-import { FormProps } from "../../../../types";
-// import createRegularUser from "../server_actions/createRegularUser";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FormProps } from "@/types/auth";
 
 export default function Form({
   buttonText1,
   buttonText2,
   handlerSubmit,
   urlForRedirect,
-  label,
+  labels,
+  names,
+  types,
 }: FormProps): React.ReactElement {
   const router = useRouter();
-  const [email, setEmail] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      return sessionStorage.getItem("pendingEmail") || "";
+  const key = useSearchParams().get("key"); //имя ключа, переданного при редиректе
+
+  let localStorageValue = "";
+  if (key !== null) {
+    const value = sessionStorage.getItem(key); // значение свойства у sessionStorage, заложенного туда перед редиректом сюда
+    if (value !== null) {
+      localStorageValue = value;
     }
-    return ""; // значение по умолчанию для сервера
-  });
-  const [code, setCode] = useState<string>("");
+  }
 
   const [state, formAction, isPending] = useActionState(handlerSubmit, {
-    errors: null,
-    data: null,
-  }); // объявляем хук useActionState. он нам предоставляет 3 переменные. state по умолчанию равен {success: false,errors: {}}, formAction равен registerUser, isPending по умолчанию равен false. когда мы заполнили форму и нажали на кнопку - выполняется функция registerUser, которая возвращает нам state в котором либо есть ошибки, либо нет, success либо true, либо false. в момент выполнения registerUser переменная isPending меняется на true. когда к нам приходит state - обновляется состояние формы на которой применялся серверный action и мы показываем либо ошибку, либо успех.
+    errors: [""],
+    data: {
+      email: "",
+      password: "",
+      code: "",
+      message: "",
+      localStorage: null,
+    },
+  });
   useEffect(() => {
-    if (state.data !== null) {
-      router.push(urlForRedirect);
-      router.refresh();
+    if (state.errors === null) {
+      /*все варианты при нажатии кнопки
+    если key === null && data.sessionStorage === null
+   простой редирект
+ 
+   если key === null && data.sessionStorage !== null
+   редирект с параметром + присваивание item
+ 
+   если key !== null && data.sessionStorage !== null
+   редирект с параметром + переопределение item
+ 
+   если key !== null && data.sessionStorage === null
+  простой редирект + очищение item
+     */
+      if (key === null && state.data.localStorage === null) {
+        router.push(urlForRedirect);
+        router.refresh();
+      }
+      if (key === null && state.data.localStorage !== null) {
+        sessionStorage.setItem(
+          state.data.localStorage.key,
+          state.data.localStorage.value,
+        );
+        router.push(`${urlForRedirect}?key=${state.data.localStorage.key}`);
+        router.refresh();
+      }
+      if (key !== null && state.data.localStorage !== null) {
+        sessionStorage.setItem(
+          state.data.localStorage.key,
+          state.data.localStorage.value,
+        );
+        router.push(`${urlForRedirect}?key=${state.data.localStorage.key}`);
+        router.refresh();
+      }
+      if (key !== null && state.data.localStorage === null) {
+        sessionStorage.removeItem(key);
+        router.push(urlForRedirect);
+        router.refresh();
+      }
     }
-  }, [state.data, router, urlForRedirect]);
+  }, [state.errors, state.data, router, urlForRedirect, key]);
   return (
     <form noValidate action={formAction} className="flex flex-col gap-6">
       <div className="grid gap-2">
-        <Label htmlFor="email">{label}</Label>
+        <Label>{labels[0]}</Label>
         <Input
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          name="code"
-          type="text"
+          name={names[0]}
+          type={types[0]}
+          defaultValue={state.data?.[names[0]]}
           required
         />
-        <Input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-          type="hidden"
+        <Input //скрытый, будет хранить значение ключа key, переданного параметром.
+          value={localStorageValue}
+          name={names[1]}
+          type={types[1]}
           required
         />
       </div>
@@ -59,9 +101,9 @@ export default function Form({
           {state.errors[0]}
         </div>
       )}
-      {state.data !== null && ( //показываем успех
+      {state.errors === null && ( //показываем успех
         <div className="text-sm text-success text-center">
-          Успешная регистрация
+          {state.data.message}
         </div>
       )}
 

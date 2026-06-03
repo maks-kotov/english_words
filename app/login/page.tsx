@@ -1,6 +1,5 @@
 import { TwoInputForm } from "@/modules/twoInputForm";
 import login from "@/app/login/login";
-// import registerUser from "@/modules/authModal/server_actions/registerUser";
 
 export default function SignInPage(): React.ReactElement {
   return (
@@ -11,11 +10,13 @@ export default function SignInPage(): React.ReactElement {
         buttonText2: "Войти",
         handlerSubmit: login,
         urlForRedirect: "/",
-        label: ["E-mail", "Пароль"],
+        labels: ["E-mail", "Пароль"],
+        names: ["email", "password", "code"],
+        types: ["email", "password", "hidden"],
       }}
       linksProps={{
         linkText: "Ещё нету аккаунта?",
-        linkHref: "/register",
+        linkHref: "/registerStep1",
       }}
       showFooter={true}
     />

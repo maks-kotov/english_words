@@ -1,11 +1,13 @@
 export type FormState = {
   errors: string[] | null; // errors = null в случaе успеха
   data: {
-    // data = null в случaе ошибки
+    // data никогда не равна null, errors равна null в случае успеха
     email: string; // для валидации
     password: string; // для валидации
-    message?: string; // чтоб показать успех в форме
-  } | null;
+    message: string; // чтоб показать успех в форме
+    code: string;
+    localStorage: { key: string; value: string } | null;
+  };
 };
 export type FormProps = {
   buttonText1: string;
@@ -15,7 +17,9 @@ export type FormProps = {
     formData: FormData,
   ) => Promise<FormState>;
   urlForRedirect: string;
-  label: string[];
+  names: Array<"email" | "password" | "code">;
+  labels: string[];
+  types: string[];
 };
 export type TitleProps = {
   title: string;

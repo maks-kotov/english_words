@@ -12,26 +12,32 @@ export default async function login(
     formData.get("email") as string,
     formData.get("password") as string,
   );
-  if (result.data === null) {
-    return result; //возврат ошибки в form.tsx если не прошёл базовую валидацию (функция вызывается там)
+  if (result.errors !== null) {
+    return result;
   }
   const { email, password } = result.data;
   try {
     await signIn("credentials", { email, password, redirect: false }); // redirect прописан в form.tsx
     return {
-      data: { ...result.data, message: "Вход выполнен успешно" },
+      data: {
+        email,
+        password,
+        code: "",
+        message: "Вход выполнен успешно",
+        localStorage: null,
+      },
       errors: null,
     };
   } catch (error) {
     if (error instanceof CredentialsSignin) {
       return {
         errors: [error.code],
-        data: null,
+        data: { email, password, code: "", message: "", localStorage: null },
       };
     }
     return {
-      errors: [`непредвиденная ошибка: ${error}`],
-      data: null,
+      errors: [`Непредвиденная ошибка: ${error}`],
+      data: { email, password, code: "", message: "", localStorage: null },
     };
   }
 }

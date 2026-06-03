@@ -1,5 +1,5 @@
 import z from "zod";
-import { FormState } from "../modules/twoInputForm/types";
+import { FormState } from "@/types/auth";
 
 export default async function basicValidation(
   email: string,
@@ -26,7 +26,7 @@ export default async function basicValidation(
     ] */
     return {
       errors: result.error.issues.map((er) => er.message),
-      data: null,
+      data: { email, password, code: "", message: "", localStorage: null },
     };
   }
   return {
@@ -34,6 +34,9 @@ export default async function basicValidation(
     data: {
       email: result.data.email,
       password: result.data.password,
+      code: "",
+      message: "",
+      localStorage: null,
     },
   };
 }

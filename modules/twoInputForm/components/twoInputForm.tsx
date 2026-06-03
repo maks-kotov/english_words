@@ -23,11 +23,13 @@ export default function TwoInputForm({
       <DialogContent className="sm:max-w-sm">
         <Title title={titleProps.title} description={titleProps.description} />
         <Form
-          label={formProps.label}
           handlerSubmit={formProps.handlerSubmit}
           urlForRedirect={formProps.urlForRedirect}
           buttonText1={formProps.buttonText1}
           buttonText2={formProps.buttonText2}
+          labels={formProps.labels}
+          names={formProps.names}
+          types={formProps.types}
         />
         {showFooter && (
           <DialogFooter>
