@@ -1,9 +1,9 @@
-import { OneInputForm } from "@/modules/oneInputForm";
+import { AuthForm } from "@/modules/authForm";
 import getEmail from "./getEmail";
 
-export default function ForgotPassword(): React.ReactElement {
+export default function ForgotPasswordStep1(): React.ReactElement {
   return (
-    <OneInputForm
+    <AuthForm
       titleProps={{
         title: "Подтверждение E-mail",
         description:
@@ -13,11 +13,13 @@ export default function ForgotPassword(): React.ReactElement {
         buttonText1: "Отправление...",
         buttonText2: "Отправить",
         handlerSubmit: getEmail,
-        urlForRedirect: "/confirmADSADAADD",
+        urlForRedirect: "/forgotPasswordStep2",
         labels: ["Ваша почта"],
-        names: ["email", "email"], //второй email использоваться не будет, я вынужден поставить его из-за типизации
-        types: ["email", "hidden"],
+        names: ["email", "password", "code"], //password и code использоваться не будут.
+        types: ["email", "hidden", "hidden"],
       }}
+      linksProps={{ linkHref: "", linkText: "" }}
+      showFooter={false}
     />
   );
 }

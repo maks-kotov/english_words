@@ -1,9 +1,9 @@
-import { TwoInputForm } from "@/modules/twoInputForm";
+import { AuthForm } from "@/modules/authForm";
 import login from "@/app/login/login";
 
 export default function SignInPage(): React.ReactElement {
   return (
-    <TwoInputForm
+    <AuthForm
       titleProps={{ title: "Вход", description: "" }}
       formProps={{
         buttonText1: "Выполняю вход...",

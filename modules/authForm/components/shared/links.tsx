@@ -13,7 +13,7 @@ export default function Links({
         {linkText}
       </Link>
       <Link
-        href="/forgotPassword"
+        href="/forgotPasswordStep1"
         className="mx-auto inline-block text-sm underline-offset-4 hover:underline text-light">
         Забыли пароль?
       </Link>

@@ -26,7 +26,14 @@ export default async function basicValidation(
     ] */
     return {
       errors: result.error.issues.map((er) => er.message),
-      data: { email, password, code: "", message: "", localStorage: null },
+      data: {
+        email,
+        password,
+        code: "",
+        message: "",
+        repeatPassword: "",
+        sessionStorage: null,
+      },
     };
   }
   return {
@@ -36,7 +43,8 @@ export default async function basicValidation(
       password: result.data.password,
       code: "",
       message: "",
-      localStorage: null,
+      repeatPassword: result.data.password,
+      sessionStorage: null,
     },
   };
 }

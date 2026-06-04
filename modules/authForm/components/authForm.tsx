@@ -1,8 +1,8 @@
 import { Dialog, DialogContent, DialogFooter } from "@/components/ui/dialog";
-import OAuths from "@/modules/twoInputForm/components/shared/oauths";
-import Form from "@/modules/twoInputForm/components/shared/form";
-import Title from "@/modules/twoInputForm/components/shared/title";
-import Links from "@/modules/twoInputForm/components/shared/links";
+import OAuths from "@/modules/authForm/components/shared/oauths";
+import Form from "@/modules/authForm/components/shared/form";
+import Title from "@/modules/authForm/components/shared/title";
+import Links from "@/modules/authForm/components/shared/links";
 import { FormProps, LinksProps, TitleProps } from "@/types/auth";
 
 interface props {
@@ -12,7 +12,7 @@ interface props {
   showFooter: boolean;
 }
 
-export default function TwoInputForm({
+export default function AuthForm({
   titleProps,
   formProps,
   linksProps,
@@ -20,7 +20,7 @@ export default function TwoInputForm({
 }: props): React.ReactElement {
   return (
     <Dialog open={true}>
-      <DialogContent className="sm:max-w-sm">
+      <DialogContent showCloseButton={false} className="sm:max-w-sm">
         <Title title={titleProps.title} description={titleProps.description} />
         <Form
           handlerSubmit={formProps.handlerSubmit}

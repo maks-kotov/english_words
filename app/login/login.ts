@@ -24,7 +24,8 @@ export default async function login(
         password,
         code: "",
         message: "Вход выполнен успешно",
-        localStorage: null,
+        repeatPassword: "",
+        sessionStorage: null,
       },
       errors: null,
     };
@@ -32,12 +33,26 @@ export default async function login(
     if (error instanceof CredentialsSignin) {
       return {
         errors: [error.code],
-        data: { email, password, code: "", message: "", localStorage: null },
+        data: {
+          email,
+          password,
+          code: "",
+          message: "",
+          repeatPassword: "",
+          sessionStorage: null,
+        },
       };
     }
     return {
       errors: [`Непредвиденная ошибка: ${error}`],
-      data: { email, password, code: "", message: "", localStorage: null },
+      data: {
+        email,
+        password,
+        code: "",
+        message: "",
+        repeatPassword: "",
+        sessionStorage: null,
+      },
     };
   }
 }

@@ -1,9 +1,9 @@
-import { OneInputForm } from "@/modules/oneInputForm";
+import { AuthForm } from "@/modules/authForm";
 import registerStep2 from "./registerStep2";
 
 export default function RegisterStep2(): React.ReactElement {
   return (
-    <OneInputForm
+    <AuthForm
       titleProps={{
         title: "Подтверждение E-mail",
         description:
@@ -15,9 +15,11 @@ export default function RegisterStep2(): React.ReactElement {
         handlerSubmit: registerStep2,
         urlForRedirect: "/login",
         labels: ["Код верификации"],
-        names: ["code", "email"],
-        types: ["text", "hidden"],
+        names: ["code", "password", "email"], // password не исопльзуeтся
+        types: ["text", "hidden", "hidden"],
       }}
+      showFooter={false}
+      linksProps={{ linkHref: "", linkText: "" }}
     />
   );
 }

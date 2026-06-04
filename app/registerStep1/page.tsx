@@ -1,9 +1,9 @@
-import { TwoInputForm } from "@/modules/twoInputForm";
+import { AuthForm } from "@/modules/authForm";
 import registerStep1 from "@/app/registerStep1/registerStep1";
 
 export default function RegisterStep1(): React.ReactElement {
   return (
-    <TwoInputForm
+    <AuthForm
       titleProps={{ title: "Регистрация", description: "" }}
       formProps={{
         buttonText1: "Регистрация...",

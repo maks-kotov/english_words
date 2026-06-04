@@ -7,6 +7,7 @@ export default async function registerStep2(
   formData: FormData,
 ): Promise<FormState> {
   const email = formData.get("email") as string;
+
   const code = formData.get("code") as string;
 
   const temporaryUser = await prisma.temporaryUser.findUnique({
@@ -30,7 +31,8 @@ export default async function registerStep2(
           password: "",
           code,
           message: "",
-          localStorage: null,
+          repeatPassword: "",
+          sessionStorage: null,
         },
         errors: [`Ошибка создания пользователя`],
       };
@@ -41,13 +43,21 @@ export default async function registerStep2(
         password: "",
         code,
         message: "Код верный.",
-        localStorage: null,
+        repeatPassword: "",
+        sessionStorage: null,
       },
       errors: null,
     };
   }
   return {
-    data: { email: "", password: "", code, message: "", localStorage: null },
+    data: {
+      email: "",
+      password: "",
+      code,
+      message: "",
+      repeatPassword: "",
+      sessionStorage: null,
+    },
     errors: ["Неправильный код"],
   };
 }

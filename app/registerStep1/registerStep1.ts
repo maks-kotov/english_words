@@ -5,7 +5,6 @@
 import { prisma } from "@/prisma";
 import { FormState } from "@/types/auth";
 import basicValidation from "@/utils/basicValidation";
-import bcrypt from "bcryptjs";
 import sendVerificationCode from "@/utils/sendVerivicationCode";
 import createTemporaryUser from "@/utils/createTemporaryUser";
 
@@ -28,14 +27,28 @@ export default async function registerStep1(
 
   if (existingUser) {
     return {
-      data: { email, password, code: "", message: "", localStorage: null },
+      data: {
+        email,
+        password,
+        code: "",
+        message: "",
+        repeatPassword: "",
+        sessionStorage: null,
+      },
       errors: ["Пользователь с таким email уже существует"],
     };
   } else {
     const temporaryUser = await createTemporaryUser(email, password);
     if (temporaryUser === null) {
       return {
-        data: { email, password, code: "", message: "", localStorage: null },
+        data: {
+          email,
+          password,
+          code: "",
+          message: "",
+          repeatPassword: "",
+          sessionStorage: null,
+        },
         errors: ["Ошибка создания пользователя"],
       };
     }
@@ -52,7 +65,8 @@ export default async function registerStep1(
           email,
           password,
           code: "",
-          localStorage: { key: "email", value: email },
+          repeatPassword: "",
+          sessionStorage: { key: "email", value: email },
           message: `Не смог отправить верификационный код: ${response.error}`, // тут теперь даже в случае ошибки успех, но это временно.
         },
         errors: null,
@@ -62,7 +76,7 @@ export default async function registerStep1(
     return {
       data: {
         ...result.data,
-        localStorage: { key: "email", value: email },
+        sessionStorage: { key: "email", value: email },
         message: "Перенаправление...",
       },
       errors: null,
