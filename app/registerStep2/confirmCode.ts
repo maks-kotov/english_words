@@ -2,7 +2,7 @@
 import { FormState } from "@/types/auth";
 import { prisma } from "@/prisma";
 
-export default async function registerStep2(
+export default async function confirmCode(
   prev: FormState,
   formData: FormData,
 ): Promise<FormState> {

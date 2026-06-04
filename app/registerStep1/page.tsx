@@ -1,5 +1,5 @@
 import { AuthForm } from "@/modules/authForm";
-import registerStep1 from "@/app/registerStep1/registerStep1";
+import sendCode from "@/app/registerStep1/sendCode";
 
 export default function RegisterStep1(): React.ReactElement {
   return (
@@ -8,7 +8,7 @@ export default function RegisterStep1(): React.ReactElement {
       formProps={{
         buttonText1: "Регистрация...",
         buttonText2: "Зарегистрироваться",
-        handlerSubmit: registerStep1,
+        handlerSubmit: sendCode,
         urlForRedirect: "/registerStep2",
         labels: ["E-mail", "Пароль"],
         names: ["email", "password", "code"],

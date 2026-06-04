@@ -1,5 +1,5 @@
 import { AuthForm } from "@/modules/authForm";
-import registerStep2 from "./registerStep2";
+import confirmCode from "./confirmCode";
 
 export default function RegisterStep2(): React.ReactElement {
   return (
@@ -12,7 +12,7 @@ export default function RegisterStep2(): React.ReactElement {
       formProps={{
         buttonText1: "Подтверждение...",
         buttonText2: "Подтвердить",
-        handlerSubmit: registerStep2,
+        handlerSubmit: confirmCode,
         urlForRedirect: "/login",
         labels: ["Код верификации"],
         names: ["code", "password", "email"], // password не исопльзуeтся

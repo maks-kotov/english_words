@@ -1,5 +1,5 @@
 import { AuthForm } from "@/modules/authForm";
-import getEmail from "./getEmail";
+import sendCode from "./sendCode";
 
 export default function ForgotPasswordStep1(): React.ReactElement {
   return (
@@ -12,7 +12,7 @@ export default function ForgotPasswordStep1(): React.ReactElement {
       formProps={{
         buttonText1: "Отправление...",
         buttonText2: "Отправить",
-        handlerSubmit: getEmail,
+        handlerSubmit: sendCode,
         urlForRedirect: "/forgotPasswordStep2",
         labels: ["Ваша почта"],
         names: ["email", "password", "code"], //password и code использоваться не будут.

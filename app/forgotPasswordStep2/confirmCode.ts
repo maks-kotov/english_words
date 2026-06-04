@@ -2,7 +2,7 @@
 import { prisma } from "@/prisma";
 import { FormState } from "@/types/auth";
 
-export default async function hanlder(
+export default async function confrimCode(
   prev: FormState,
   formData: FormData,
 ): Promise<FormState> {

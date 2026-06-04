@@ -1,5 +1,5 @@
 import { AuthForm } from "@/modules/authForm";
-import hanlder from "./hanlder";
+import changePassword from "./changePassword";
 
 export default function ForgotPasswordStep1(): React.ReactElement {
   return (
@@ -11,7 +11,7 @@ export default function ForgotPasswordStep1(): React.ReactElement {
       formProps={{
         buttonText1: "Отправление...",
         buttonText2: "Отправить",
-        handlerSubmit: hanlder,
+        handlerSubmit: changePassword,
         urlForRedirect: "/login",
         labels: ["Введите новый пароль", "Подтвердите новый пароль"],
         names: ["password", "repeatPassword", "email"],

@@ -4,7 +4,7 @@ import { FormState } from "@/types/auth";
 import createTemporaryUser from "@/utils/createTemporaryUser";
 import sendVerificationCode from "@/utils/sendVerivicationCode";
 //получаю email, проверяю есть ли пользователь с таким email, если есть отправляю на него код и возвращаю state с успехом, если нету, то возвращаю state с ошибкой
-export default async function getEmail(
+export default async function sendCode(
   prev: FormState,
   formData: FormData,
 ): Promise<FormState> {

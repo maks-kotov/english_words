@@ -8,7 +8,7 @@ import basicValidation from "@/utils/basicValidation";
 import sendVerificationCode from "@/utils/sendVerivicationCode";
 import createTemporaryUser from "@/utils/createTemporaryUser";
 
-export default async function registerStep1(
+export default async function sendCode(
   prevState: FormState,
   formData: FormData,
 ): Promise<FormState> {
@@ -18,7 +18,7 @@ export default async function registerStep1(
     formData.get("password") as string,
   );
   if (result.errors !== null) {
-    return result; //возврат ошибки в form.tsx (функция вызывается там)
+    return result;
   }
   const { email, password } = result.data;
   const existingUser = await prisma.temporaryUser.findUnique({

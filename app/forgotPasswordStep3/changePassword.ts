@@ -5,7 +5,7 @@ import { FormState } from "@/types/auth";
 import basicValidation from "@/utils/basicValidation";
 import bcrypt from "bcryptjs";
 
-export default async function hanlder(
+export default async function changePassword(
   prev: FormState,
   formData: FormData,
 ): Promise<FormState> {
