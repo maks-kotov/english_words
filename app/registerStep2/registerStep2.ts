@@ -7,9 +7,7 @@ export default async function registerStep2(
   formData: FormData,
 ): Promise<FormState> {
   const email = formData.get("email") as string;
-
   const code = formData.get("code") as string;
-
   const temporaryUser = await prisma.temporaryUser.findUnique({
     where: { email },
   }); // чтоб получить доступ к отправленному коду, емайлу и паролю

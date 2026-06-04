@@ -1,6 +1,6 @@
 "use server";
+import { prisma } from "@/prisma";
 import { FormState } from "@/types/auth";
-import confirmCode from "@/utils/confirmCode";
 
 export default async function hanlder(
   prev: FormState,
@@ -9,9 +9,11 @@ export default async function hanlder(
   const email = formData.get("email") as string;
   const code = formData.get("code") as string;
 
-  const codeIsMatch = await confirmCode(email, code);
+  const temporaryUser = await prisma.temporaryUser.findUnique({
+    where: { email },
+  });
 
-  if (codeIsMatch) {
+  if (code === temporaryUser?.verificationCode) {
     return {
       data: {
         email: "",
