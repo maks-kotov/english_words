@@ -1,4 +1,8 @@
 "use client";
+// это основное содержимое каждого модального окна для действий с акканутом (зарегестрироваться, войти, поменять пароль, подтвердить регистрацию)
+// здесь есть 3 инпута.
+// в каждом модальном окне виден либо 1 инпут, либо 2. третий всегда имеет type=hidden и нужен для передачи email в другие модалки
+//когда пользователь вводит данные в инпут(ы) и нажимает отправить, то мы перенаправляем его на другую страницу с параметром email=state.data.email. это позволит другому модальному окну знать email этого пользователя и найти его в бд.
 
 import { useActionState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -17,16 +21,13 @@ export default function Form({
   types,
 }: FormProps): React.ReactElement {
   const router = useRouter();
-  const key = useSearchParams().get("key"); //имя ключа, переданного при редиректе
-  let sessionStorageValue = "";
+  const inputEmail = useSearchParams().get("email"); // здесь мы получаем пришедший email
 
-  if (key !== null) {
-    const value = sessionStorage.getItem(key); // значение свойства у sessionStorage, заложенного туда перед редиректом сюда
-    if (value !== null) {
-      sessionStorageValue = value;
-    }
+  let hiddenInputValue = "";
+
+  if (inputEmail !== null) {
+    hiddenInputValue = inputEmail;
   }
-  // console.log("locatrae: ", localStorageValue);
 
   const [state, formAction, isPending] = useActionState(handlerSubmit, {
     errors: [""],
@@ -36,58 +37,15 @@ export default function Form({
       code: "",
       message: "",
       repeatPassword: "",
-      sessionStorage: null,
     },
   });
   useEffect(() => {
+    // будет отрабатывать при нажатии на кнопку
     if (state.errors === null) {
-      /*все варианты при нажатии кнопки
-    если key === null && data.sessionStorage === null
-   простой редирект
- 
-   если key === null && data.sessionStorage !== null
-   редирект с параметром + присваивание item
- 
-   если key !== null && data.sessionStorage !== null
-   редирект с параметром + переопределение item
- 
-   если key !== null && data.sessionStorage === null
-  простой редирект + очищение item
-     */
-      if (key === null && state.data.sessionStorage === null) {
-        console.log("выполнение");
-
-        router.push(urlForRedirect);
-        router.refresh();
-      }
-      if (key === null && state.data.sessionStorage !== null) {
-        console.log("выполнение2");
-
-        sessionStorage.setItem(
-          state.data.sessionStorage.key,
-          state.data.sessionStorage.value,
-        );
-        router.push(`${urlForRedirect}?key=${state.data.sessionStorage.key}`);
-        router.refresh();
-      }
-      if (key !== null && state.data.sessionStorage !== null) {
-        console.log("выполнение3");
-
-        sessionStorage.setItem(
-          state.data.sessionStorage.key,
-          state.data.sessionStorage.value,
-        );
-        router.push(`${urlForRedirect}?key=${state.data.sessionStorage.key}`);
-        router.refresh();
-      }
-      if (key !== null && state.data.sessionStorage === null) {
-        console.log("выполнение4");
-        sessionStorage.removeItem(key);
-        router.push(urlForRedirect);
-        router.refresh();
-      }
+      router.push(`${urlForRedirect}?email=${state.data.email}`); // здесь передаём email при нажатии на кнопку
+      router.refresh();
     }
-  }, [state.data.sessionStorage, state.errors, router, urlForRedirect, key]);
+  }, [state.errors, router, urlForRedirect, state.data.email]);
 
   return (
     <form noValidate action={formAction} className="flex flex-col">
@@ -113,7 +71,7 @@ export default function Form({
         </div>
       )}
       <Input //скрытый, будет хранить значение ключа key, переданного параметром.
-        value={sessionStorageValue}
+        value={hiddenInputValue}
         name={names[2]}
         type={types[2]}
         required

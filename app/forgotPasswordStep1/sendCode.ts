@@ -24,7 +24,6 @@ export default async function sendCode(
           code: "",
           message: "",
           repeatPassword: "",
-          sessionStorage: null,
         },
         errors: ["Ошибка создания пользователя"],
       };
@@ -42,7 +41,6 @@ export default async function sendCode(
           email,
           password: "",
           code: "",
-          sessionStorage: { key: "email", value: email },
           repeatPassword: "",
           message: `Не смог отправить верификационный код: ${response.error}`, // тут теперь даже в случае ошибки успех, но это временно.
         },
@@ -57,7 +55,6 @@ export default async function sendCode(
         code: "",
         message: "Перенаправление...",
         repeatPassword: "",
-        sessionStorage: { key: "email", value: email },
       },
       errors: null,
     };
@@ -70,7 +67,6 @@ export default async function sendCode(
         code: "",
         message: "",
         repeatPassword: "",
-        sessionStorage: null,
       },
       errors: ["Пользователь с таким e-mail не существует"],
     };

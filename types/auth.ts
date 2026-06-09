@@ -6,8 +6,7 @@ export type FormState = {
     password: string; // для валидации
     message: string; // чтоб показать успех в форме
     code: string;
-    repeatPassword: string; //связано1
-    sessionStorage: { key: string; value: string } | null;
+    repeatPassword: string;
   };
 };
 export type FormProps = {
@@ -18,9 +17,9 @@ export type FormProps = {
     formData: FormData,
   ) => Promise<FormState>;
   urlForRedirect: string;
-  names: Array<"email" | "password" | "code" | "repeatPassword">; //=data.email, data.password, data.repeatPassword, data.code
   labels: string[];
-  types: string[];
+  names: Array<"email" | "password" | "code" | "repeatPassword">; //=data.email, data.password, data.repeatPassword, data.code
+  types: Array<"text" | "email" | "password" | "hidden">;
 };
 export type TitleProps = {
   title: string;

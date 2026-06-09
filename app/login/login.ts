@@ -25,7 +25,6 @@ export default async function login(
         code: "",
         message: "Вход выполнен успешно",
         repeatPassword: "",
-        sessionStorage: null,
       },
       errors: null,
     };
@@ -39,7 +38,6 @@ export default async function login(
           code: "",
           message: "",
           repeatPassword: "",
-          sessionStorage: null,
         },
       };
     }
@@ -51,7 +49,6 @@ export default async function login(
         code: "",
         message: "",
         repeatPassword: "",
-        sessionStorage: null,
       },
     };
   }

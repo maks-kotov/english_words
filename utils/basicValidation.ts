@@ -32,7 +32,6 @@ export default async function basicValidation(
         code: "",
         message: "",
         repeatPassword: "",
-        sessionStorage: null,
       },
     };
   }
@@ -44,7 +43,6 @@ export default async function basicValidation(
       code: "",
       message: "",
       repeatPassword: result.data.password,
-      sessionStorage: null,
     },
   };
 }

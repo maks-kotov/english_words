@@ -14,7 +14,7 @@ export default function ForgotPasswordStep1(): React.ReactElement {
         handlerSubmit: confrimCode,
         urlForRedirect: "/forgotPasswordStep3",
         labels: ["Код верификации"],
-        names: ["code", "password", "email"], //password и email использоваться не будут.
+        names: ["code", "password", "email"], //password использоваться не будeт.
         types: ["email", "hidden", "hidden"],
       }}
       linksProps={{ linkHref: "", linkText: "" }}

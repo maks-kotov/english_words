@@ -40,7 +40,6 @@ export default async function changePassword(
           repeatPassword: repeatPassword,
           code: "",
           message: "Пароль успешно изменён.",
-          sessionStorage: null,
         },
         errors: null,
       };
@@ -54,12 +53,10 @@ export default async function changePassword(
               repeatPassword: "",
               code: "",
               message: "",
-              sessionStorage: null,
             },
             errors: ["Пользователя с таким email не существует."],
           };
         }
-        console.log("error.code: ", error.code);
       }
       return {
         data: {
@@ -68,16 +65,11 @@ export default async function changePassword(
           repeatPassword: "",
           code: "",
           message: "",
-          sessionStorage: null,
         },
         errors: ["Ошибка при смене пароля"],
       };
     }
   } else {
-    console.log("email: ", email);
-    console.log("password: ", password);
-    console.log("repeatPassword: ", repeatPassword);
-
     return {
       data: {
         email: "",
@@ -85,7 +77,6 @@ export default async function changePassword(
         repeatPassword,
         code: "",
         message: "",
-        sessionStorage: null,
       },
       errors: ["Пароли не совпадают."],
     };

@@ -21,7 +21,7 @@ export default async function sendCode(
     return result;
   }
   const { email, password } = result.data;
-  const existingUser = await prisma.temporaryUser.findUnique({
+  const existingUser = await prisma.user.findUnique({
     where: { email },
   });
 
@@ -33,7 +33,6 @@ export default async function sendCode(
         code: "",
         message: "",
         repeatPassword: "",
-        sessionStorage: null,
       },
       errors: ["Пользователь с таким email уже существует"],
     };
@@ -47,7 +46,6 @@ export default async function sendCode(
           code: "",
           message: "",
           repeatPassword: "",
-          sessionStorage: null,
         },
         errors: ["Ошибка создания пользователя"],
       };
@@ -66,7 +64,6 @@ export default async function sendCode(
           password,
           code: "",
           repeatPassword: "",
-          sessionStorage: { key: "email", value: email },
           message: `Не смог отправить верификационный код: ${response.error}`, // тут теперь даже в случае ошибки успех, но это временно.
         },
         errors: null,
@@ -76,7 +73,6 @@ export default async function sendCode(
     return {
       data: {
         ...result.data,
-        sessionStorage: { key: "email", value: email },
         message: "Перенаправление...",
       },
       errors: null,

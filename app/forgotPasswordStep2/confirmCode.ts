@@ -16,12 +16,11 @@ export default async function confrimCode(
   if (code === temporaryUser?.verificationCode) {
     return {
       data: {
-        email: "",
+        email,
         password: "",
         code,
         message: "Код верный.",
         repeatPassword: "",
-        sessionStorage: { key: "email", value: email },
       },
       errors: null,
     };
@@ -33,7 +32,6 @@ export default async function confrimCode(
       code,
       message: "",
       repeatPassword: "",
-      sessionStorage: null,
     },
 
     errors: ["Неправильный код"],
