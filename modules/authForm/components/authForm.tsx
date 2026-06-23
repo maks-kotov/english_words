@@ -1,4 +1,9 @@
-import { Dialog, DialogContent, DialogFooter } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import OAuths from "@/modules/authForm/components/shared/oauths";
 import Form from "@/modules/authForm/components/shared/form";
 import Title from "@/modules/authForm/components/shared/title";
@@ -21,6 +26,7 @@ export default function AuthForm({
   return (
     <Dialog open={true}>
       <DialogContent showCloseButton={false} className="sm:max-w-sm">
+        <DialogDescription></DialogDescription>
         <Title title={titleProps.title} description={titleProps.description} />
         <Form
           handlerSubmit={formProps.handlerSubmit}

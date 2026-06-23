@@ -1,9 +1,10 @@
+import React from "react";
 import Card from "./ui/card";
 
-export default function Cards() {
+export default function Cards(): React.ReactElement {
   return (
     <section className="text-center mb-16">
-      <h2 className="text-xl mb-4">Что ждёт тебя внутри:</h2>
+      <h2 className="text-2xl mb-4">Что ждёт тебя внутри:</h2>
       <div className="grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-2  lg:grid-cols-3 lg:gap-x-16">
         <div className="w-72 place-self-center sm:place-self-end lg:place-self-center lg:w-full">
           <Card

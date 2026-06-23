@@ -3,7 +3,8 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/utils/cn";
 import Footer from "@/components/shared/footer";
-import { Header } from "@/modules/header";
+import Header from "@/components/shared/header";
+import { auth } from "@/auth/auth";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -41,6 +42,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>): Promise<React.ReactElement> {
+  const session = await auth();
   return (
     <html
       lang="en"
@@ -52,9 +54,9 @@ export default async function RootLayout({
         "font-sans",
         inter.variable,
       )}>
-      <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
+      <body className="min-h-screen flex flex-col bg-background text-foreground">
+        <Header session={session} />
+        <main className="flex-1 mx-4 md:mx-12">{children}</main>
         <Footer />
       </body>
     </html>
