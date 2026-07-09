@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 interface props {
   icon: string;
   title: string;
@@ -20,7 +21,9 @@ export default function Card({
       <div className="mb-12 text-lg font-bold">{countWords} слов</div>
       <div className="mb-3 text-md">📊 Прогресс: {progress}</div>
       <div className="mb-6 text-md">⏳ Повтор через: {repeatAfter} дней</div>
-      <Button className="w-full text-lg">Выбрать</Button>
+      <Link href={"/learnMode"}>
+        <Button className="w-full text-lg">Выбрать</Button>
+      </Link>
     </div>
   );
 }

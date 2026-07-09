@@ -5,6 +5,8 @@ import { cn } from "@/utils/cn";
 import Footer from "@/components/shared/footer";
 import Header from "@/components/shared/header";
 import { auth } from "@/auth/auth";
+import BackgroundWrapper from "@/components/shared/backgroundWrapper";
+import PageContent from "@/components/shared/pageContent";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -54,10 +56,13 @@ export default async function RootLayout({
         "font-sans",
         inter.variable,
       )}>
-      <body className="min-h-screen flex flex-col bg-background text-foreground">
-        <Header session={session} />
-        <main className="flex-1 mx-4 md:mx-12">{children}</main>
-        <Footer />
+      <body className="min-h-screen flex flex-col text-foreground">
+        <BackgroundWrapper>
+          <PageContent session={session}>{children}</PageContent>
+          {/* <Header session={session} /> */}
+          {/* <main className="flex-1 mx-4 md:mx-12">{children}</main> */}
+          {/* <Footer /> */}
+        </BackgroundWrapper>
       </body>
     </html>
   );
