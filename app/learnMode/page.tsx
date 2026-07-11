@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { InputV2 } from "@/components/ui/input";
 
 export default function LearnMode(): React.ReactElement {
   return (
@@ -8,7 +8,7 @@ export default function LearnMode(): React.ReactElement {
         <p className="text-center mb-2 text-4xl">🐱</p>
         <p className="text-center mb-8 text-2xl">Кот</p>
         <div className="max-w-100 mx-auto">
-          <Input
+          <InputV2
             placeholder="Перевод..."
             className="border-0 border-b-2 border-border bg-transparent rounded-none mb-8"
           />

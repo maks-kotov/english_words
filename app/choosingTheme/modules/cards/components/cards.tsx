@@ -1,8 +1,5 @@
 import Link from "next/link";
 import Card from "./ui/card";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-
 export default function Cards(): React.ReactElement {
   return (
     <div className="grid justify-items-center  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:px-30 gap-8 mb-16">
@@ -11,7 +8,7 @@ export default function Cards(): React.ReactElement {
           Создать новую тему
         </div>
         <Link
-          href={"#"}
+          href={"/createTheme"}
           className="sticky z-1 bg-secondary lg:bg-transparent lg:text-secondary inline-block border border-secondary/50 px-4 pt-1 pb-2 rounded-sm mx-auto hover:bg-secondary hover:text-secondary-foreground transition-colors duration-200 ease-out mb-35 sm:mb-0">
           <span className="bold text-4xl">+</span>
         </Link>
