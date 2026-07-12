@@ -11,7 +11,7 @@ export default function Title({
 }: TitleProps): React.ReactElement {
   return (
     <DialogHeader>
-      <DialogTitle className="text-center text-xl font-bold">
+      <DialogTitle className="text-center text-2xl font-bold">
         {title}
       </DialogTitle>
       <DialogDescription>{description}</DialogDescription>

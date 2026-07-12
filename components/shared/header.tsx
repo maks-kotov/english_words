@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { Session } from "next-auth";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { CircleUserRound, LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -32,10 +31,10 @@ export default function Header({
   const router = useRouter();
   return (
     <header className="w-full h-20 bg-secondary flex justify-between items-center px-4 md:px-12 lg:px-12 text-secondary-foreground border-b border-border">
-      <div className="flex items-center gap-x-2 cursor-pointer">
+      <Link href={"/"} className="flex items-center gap-x-2 cursor-pointer">
         <span className="text-4xl">🐙</span>
         <span className="text-xl">EnglishWords</span>
-      </div>
+      </Link>
       {session === null ? (
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger className="outline-none">
@@ -77,16 +76,16 @@ export default function Header({
                     Меню
                   </SheetTitle>
                   <div className="flex flex-col items-center gap-y-2">
-                    <Link className="tracking-widest" href={"#"}>
+                    <Link className="tracking-widest" href={"/shop"}>
                       Магазин
                     </Link>
-                    <Link className="tracking-widest" href={"#"}>
+                    <Link className="tracking-widest" href={"/settings"}>
                       Настройки
                     </Link>
-                    <Link className="tracking-widest" href={"#"}>
+                    <Link className="tracking-widest" href={"/bonuses"}>
                       Бонусы
                     </Link>
-                    <Link className="tracking-widest" href={"#"}>
+                    <Link className="tracking-widest" href={"/profile"}>
                       Профиль
                     </Link>
                     <Link
@@ -102,13 +101,13 @@ export default function Header({
             </Sheet>
           </div>
           <div className="hidden md:flex gap-x-4 lg:gap-x-16 items-center">
-            <Link className="cursor-pointer" href={"#"}>
+            <Link className="cursor-pointer" href={"/settings"}>
               Настройки
             </Link>
-            <Link className="cursor-pointer" href={"#"}>
+            <Link className="cursor-pointer" href={"/shop"}>
               Магазин
             </Link>
-            <Link className="cursor-pointer" href={"#"}>
+            <Link className="cursor-pointer" href={"/bonuses"}>
               Бонусы
             </Link>
             <Link className="cursor-pointer" href={"#"}>

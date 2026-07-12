@@ -9,13 +9,13 @@ export default function Cards(): React.ReactElement {
         </div>
         <Link
           href={"/createTheme"}
-          className="sticky z-1 bg-secondary lg:bg-transparent lg:text-secondary inline-block border border-secondary/50 px-4 pt-1 pb-2 rounded-sm mx-auto hover:bg-secondary hover:text-secondary-foreground transition-colors duration-200 ease-out mb-35 sm:mb-0">
+          className="sticky z-1 bg-secondary lg:bg-transparent lg:text-secondary inline-block border-2 border-secondary/50 px-4 pt-1 pb-2 rounded-sm mx-auto hover:bg-secondary hover:text-secondary-foreground transition-colors duration-200 ease-out mb-35 sm:mb-0">
           <span className="bold text-4xl">+</span>
         </Link>
         <div
           className=" bg-primary/85 w-80 h-80 rounded-full absolute
-        bottom-[-140px]
-        right-[-120px]"></div>
+        -bottom-35
+        -right-30"></div>
       </div>
       <Card //я не должен хардкодить много карточек
         icon="🐱"

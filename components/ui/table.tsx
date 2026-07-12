@@ -7,11 +7,7 @@ import { cn } from "@/utils/cn";
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div data-slot="table-container" className="">
-      <table
-        data-slot="table"
-        className={cn("border border-border", className)}
-        {...props}
-      />
+      <table data-slot="table" className={cn("w-full", className)} {...props} />
     </div>
   );
 }
@@ -36,7 +32,10 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   return (
     <th
       data-slot="table-head"
-      className={cn("p-2 text-center border border-border text-xl", className)}
+      className={cn(
+        "p-2 text-center border-2 border-primary/90 text-xl",
+        className,
+      )}
       {...props}
     />
   );
@@ -46,7 +45,10 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   return (
     <td
       data-slot="table-cell"
-      className={cn("p-2 text-center border border-border text-lg", className)}
+      className={cn(
+        "p-2 text-center border-2 border-primary/60 text-lg",
+        className,
+      )}
       {...props}
     />
   );

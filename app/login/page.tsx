@@ -4,7 +4,7 @@ import login from "@/app/login/login";
 export default function SignInPage(): React.ReactElement {
   return (
     <AuthForm
-      titleProps={{ title: "Вход", description: "" }}
+      titleProps={{ title: "Вход в аккаунт", description: "" }}
       formProps={{
         buttonText1: "Выполняю вход...",
         buttonText2: "Войти",

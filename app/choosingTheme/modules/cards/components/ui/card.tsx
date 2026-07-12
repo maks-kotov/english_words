@@ -22,7 +22,7 @@ export default function Card({
       <div className="mb-3 text-md">📊 Прогресс: {progress}</div>
       <div className="mb-6 text-md">⏳ Повтор через: {repeatAfter} дней</div>
       <Link href={"/learnMode"}>
-        <Button className="w-full max-w-80 text-lg py-2.5 lg:bg-transparent lg:text-primary lg:border lg:border-primary/50 hover:bg-primary hover:text-primary-foreground transition-colors duration-200 ease-out">
+        <Button className="w-full text-lg py-2.5 lg:bg-transparent lg:text-primary lg:border-2 lg:border-primary hover:bg-primary hover:text-primary-foreground ">
           Выбрать
         </Button>
       </Link>

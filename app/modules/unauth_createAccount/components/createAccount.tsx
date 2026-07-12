@@ -7,7 +7,7 @@ export default function CreateAccount() {
       <h2 className="text-2xl mb-12">
         Готов начать своё путешествие в мир английского?
       </h2>
-      <Link href={"/register"}>
+      <Link href={"/registerStep1"}>
         <Button>
           <span className="text-lg">✨</span>
           <span className="text-lg">Создать аккаунт</span>
