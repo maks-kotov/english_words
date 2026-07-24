@@ -1,6 +1,6 @@
 "use server";
 import { FormState } from "@/types/auth";
-import basicValidation from "@/utils/basicValidation";
+import basicValidation from "@/modules/authForm/utils/basicValidation";
 import { signIn } from "@/auth/auth";
 import { CredentialsSignin } from "next-auth";
 

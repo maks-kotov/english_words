@@ -152,7 +152,7 @@ export default function CreateTheme(): React.ReactElement {
         <Popover>
           <PopoverTrigger className="mb-2 ">
             <div className="py-0 px-2 flex items-center gap-1 bg-muted hover:border hover:border-border cursor-pointer rounded-[min(var(--radius-md),8px)]">
-              <Smile width={"13px"} />
+              <Smile width={"15px"} />
               <p className="text-xs font-bold">Выбрать эмодзи</p>
             </div>
           </PopoverTrigger>

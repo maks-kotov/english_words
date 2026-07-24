@@ -1,23 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Rubik_Spray_Paint } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/utils/cn";
-import Footer from "@/components/shared/footer";
-import Header from "@/components/shared/header";
 import { auth } from "@/auth/auth";
 import BackgroundWrapper from "@/components/shared/backgroundWrapper";
 import PageContent from "@/components/shared/pageContent";
-
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["cyrillic", "latin"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["cyrillic", "latin"],
+});
+
+const rubik = Rubik_Spray_Paint({
+  weight: "400",
+  variable: "--font-rubik",
+  subsets: ["cyrillic", "latin"],
+  // we
 });
 
 export const metadata: Metadata = {
@@ -51,10 +55,11 @@ export default async function RootLayout({
       className={cn(
         "h-full",
         "antialiased",
+        "font-sans",
         geistSans.variable,
         geistMono.variable,
-        "font-sans",
         inter.variable,
+        rubik.variable,
       )}>
       <body className="min-h-screen flex flex-col text-foreground">
         <BackgroundWrapper>

@@ -1,7 +1,7 @@
+/* импорт Century: */
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -10,6 +10,9 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
+  --font-comic: var(--font-comic);
+  --font-rubik: var(--font-rubik);
+  --font-century: var(--font-century);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -62,6 +65,8 @@
   --sidebar: oklch(0.94 0.018 95);
   --sidebar-foreground: oklch(0.2 0 0);
   --sidebar-border: oklch(0.75 0 0);
+  --font-comic: "Comic Sans MS", "Comic Sans", cursive;
+  --font-century: "Century", serif;
 }
 
 .dark {
@@ -96,5 +101,13 @@
 
   html {
     @apply font-sans;
+  }
+
+  .avatar {
+    @apply w-10 h-10 rounded-full cursor-pointer;
+  }
+
+  .icon-size {
+    @apply h-5 w-5;
   }
 }

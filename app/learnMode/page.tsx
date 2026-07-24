@@ -4,7 +4,7 @@ import { InputV2 } from "@/components/ui/input";
 export default function LearnMode(): React.ReactElement {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-8 my-8">
-      <div className="border-border border pt-12 pb-4 px-6 rounded-lg bg-card md:col-span-8 md:order-2">
+      <div className="border-border border pt-12 pb-4 px-6 rounded-lg bg-card md:col-span-8 md:order-2 xl:col-span-10">
         <p className="text-center mb-2 text-4xl">🐱</p>
         <p className="text-center mb-8 text-2xl">Кот</p>
         <div className="max-w-100 mx-auto">
@@ -57,7 +57,8 @@ export default function LearnMode(): React.ReactElement {
       md:bg-card
       md:rounded-lg
       md:p-4
-      md:gap-y-4">
+      md:gap-y-4
+      xl:col-span-2">
         <div>
           <li className="flex justify-between mb-6">
             Тема: <b>Животные</b>
@@ -67,16 +68,16 @@ export default function LearnMode(): React.ReactElement {
           </li>
         </div>
         <div>
-          <li className="flex justify-between mb-6 md:text-sm">
+          <li className="flex justify-between items-center mb-6 md:text-sm">
             🔁 Этап: <b className="md:text-sm">3/7</b>
           </li>
-          <li className="flex justify-between mb-6 md:text-sm">
-            ⏳ Повтор: <b className="md:text-sm">через 7 дней</b>
+          <li className="flex justify-between items-center mb-6 md:text-sm">
+            ⏳ Повтор: <b className="md:text-xs">через 7 дней</b>
           </li>
           <Button
             className="hidden mx-auto md:block"
             variant="destructiveV2"
-            size={"lg"}>
+            size={"sm"}>
             Завершить
           </Button>
         </div>

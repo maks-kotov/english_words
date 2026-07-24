@@ -119,17 +119,20 @@ export default function Header({
             <DropdownMenu modal={false}>
               <DropdownMenuTrigger className="outline-none">
                 <div>
-                  <div className="w-10 h-10 rounded-full bg-border cursor-pointer "></div>
+                  <div className="avatar bg-border"></div>
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" aria-description="Вход">
                 <DropdownMenuGroup>
                   <DropdownMenuItem className="group cursor-pointer relative">
+                    {/* палка: */}
                     <div className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 bg-secondary  transition-all duration-200 opacity-0 group-hover:opacity-100" />
-                    <div className="flex items-center gap-x-2 transition-transform duration-200 group-hover:translate-x-2">
+                    <Link
+                      href={"/profile"}
+                      className="flex items-center gap-x-2 transition-transform duration-200 group-hover:translate-x-2">
                       <CircleUserRound className="text-foreground" />
                       <span>Профиль</span>
-                    </div>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => {

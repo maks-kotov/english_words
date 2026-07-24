@@ -4,9 +4,9 @@
 
 import { prisma } from "@/prisma";
 import { FormState } from "@/types/auth";
-import basicValidation from "@/utils/basicValidation";
-import sendVerificationCode from "@/utils/sendVerivicationCode";
-import createTemporaryUser from "@/utils/createTemporaryUser";
+import basicValidation from "@/modules/authForm/utils/basicValidation";
+import sendVerificationCode from "@/modules/authForm/utils/sendVerivicationCode";
+import createTemporaryUser from "@/modules/authForm/utils/createTemporaryUser";
 
 export default async function sendCode(
   prevState: FormState,

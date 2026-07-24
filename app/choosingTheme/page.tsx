@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { Cards } from "./modules/cards";
+import Card from "@/app/choosingTheme/components/card";
+import Link from "next/link";
 
 export default function ChoosingTheme(): React.ReactElement {
   return (
@@ -10,7 +11,64 @@ export default function ChoosingTheme(): React.ReactElement {
         <Search className="absolute top-4 right-4 h-4" />
         <Input placeholder="Поиск темы..." className="px-4" />
       </div>
-      <Cards />
+      <div className="grid justify-items-center  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:px-30 gap-8 mb-16">
+        <div className="w-full max-w-80  border border-border py-8 px-6 rounded-lg overflow-hidden relative">
+          <div className="mt-6 sm:mt-12 mb-6 text-2xl font-bold">
+            Создать новую тему
+          </div>
+          <Link
+            href={"/createTheme"}
+            className="sticky z-1 bg-secondary lg:bg-transparent lg:text-secondary inline-block border-2 border-secondary/50 px-4 pt-1 pb-2 rounded-sm mx-auto hover:bg-secondary hover:text-secondary-foreground transition-colors duration-200 ease-out mb-35 sm:mb-0">
+            <span className="bold text-4xl">+</span>
+          </Link>
+          <div
+            className=" bg-primary/85 w-80 h-80 rounded-full absolute
+        -bottom-35
+        -right-30"></div>
+        </div>
+        <Card //я не должен хардкодить много карточек
+          icon="🐱"
+          title="Животные"
+          countWords={24}
+          progress="4/7"
+          repeatAfter={14}
+        />
+        <Card //я не должен хардкодить много карточек
+          icon="🐱"
+          title="Животные"
+          countWords={24}
+          progress="4/7"
+          repeatAfter={14}
+        />
+        <Card //я не должен хардкодить много карточек
+          icon="🐱"
+          title="Животные"
+          countWords={24}
+          progress="4/7"
+          repeatAfter={14}
+        />
+        <Card //я не должен хардкодить много карточек
+          icon="🐱"
+          title="Животные"
+          countWords={24}
+          progress="4/7"
+          repeatAfter={14}
+        />
+        <Card //я не должен хардкодить много карточек
+          icon="🐱"
+          title="Животные"
+          countWords={24}
+          progress="4/7"
+          repeatAfter={14}
+        />
+        <Card //я не должен хардкодить много карточек
+          icon="🐱"
+          title="Животные"
+          countWords={24}
+          progress="4/7"
+          repeatAfter={14}
+        />
+      </div>
     </div>
   );
 }

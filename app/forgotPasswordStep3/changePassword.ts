@@ -2,7 +2,7 @@
 import { prisma } from "@/prisma";
 import { Prisma } from "@/prisma/generated/client";
 import { FormState } from "@/types/auth";
-import basicValidation from "@/utils/basicValidation";
+import basicValidation from "@/modules/authForm/utils/basicValidation";
 import bcrypt from "bcryptjs";
 
 export default async function changePassword(

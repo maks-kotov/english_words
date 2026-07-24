@@ -7,11 +7,27 @@ import { cn } from "@/utils/cn";
 import { Button } from "@/components/ui/button";
 import { XIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function Dialog({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Root>) {
-  return <DialogPrimitive.Root data-slot="dialog" {...props} />;
+  const router = useRouter();
+  const [open, setOpen] = React.useState(true);
+
+  const handleOpenChange = (isOpen: boolean): void => {
+    if (!isOpen) router.back();
+    setOpen(isOpen);
+  };
+
+  return (
+    <DialogPrimitive.Root
+      open={open}
+      onOpenChange={handleOpenChange}
+      data-slot="dialog"
+      {...props}
+    />
+  );
 }
 
 function DialogTrigger({
@@ -56,13 +72,14 @@ function DialogContent({
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean;
 }) {
+  /* если надо чтобы не увеличивался размер с sm и lg, то передай проп classname */
   return (
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-6 rounded-xl bg-popover p-6 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none sm:max-w-md data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+          "flex flex-col gap-6 text-center overflow-y-scroll w-full max-w-[calc(100%-2rem)] max-h-[calc(100%-2rem)] sm:h-auto sm:max-h-[calc(100%-4rem)] sm:max-w-[calc(100%-4rem)] lg:max-w-5xl lg:p-8 lg:gap-8 scrollbar-thin scrollbar-track-transparent fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-popover p-6 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
           className,
         )}
         {...props}>
@@ -72,7 +89,7 @@ function DialogContent({
             <Button
               variant="ghost"
               className="absolute top-4 right-4"
-              size="icon-sm">
+              size="sm">
               <XIcon />
               <span className="sr-only">Close</span>
             </Button>
